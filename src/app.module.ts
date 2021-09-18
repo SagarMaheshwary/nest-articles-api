@@ -1,11 +1,14 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Validator } from 'class-validator';
 import { getConnectionOptions } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import configuration from './config';
 import { User } from './entities/user.entity';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -29,6 +32,10 @@ import { User } from './entities/user.entity';
       },
       inject: [ConfigService],
     }),
+    AuthModule,
+    UserModule,
+    Validator,
+    ValidationPipe,
   ],
   controllers: [AppController],
   providers: [AppService],
