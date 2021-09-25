@@ -9,6 +9,8 @@ import configuration from './config';
 import { User } from './entities/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { ArticleModule } from './modules/article/article.module';
+import { Article } from './entities/article.entity';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { UserModule } from './modules/user/user.module';
           username: configService.get('database.username'),
           password: configService.get('database.password'),
           database: configService.get('database.dbname'),
-          entities: [User],
+          entities: [User, Article],
           synchronize: false,
         });
       },
@@ -36,6 +38,7 @@ import { UserModule } from './modules/user/user.module';
     UserModule,
     Validator,
     ValidationPipe,
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,10 +1,9 @@
 /**
  * Get custom object for response.
  *
- * @param data
- * @param message
- * @param error
- * @returns
+ * @param {any} data
+ * @param {string|null} message
+ * @returns {object}
  */
 export function jsonResponse(data: any, message: string = null): object {
   return {
